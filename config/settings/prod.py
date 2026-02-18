@@ -2,7 +2,7 @@ from os import getenv, path
 
 from dotenv import load_dotenv
 
-from .base import * #noqa
+from .base import *  # noqa
 
 # load local environment variables
 local_env_file = path.join(BASE_DIR, ".envs", ".env.local")
@@ -14,4 +14,6 @@ SECRET_KEY = getenv("DJANGO_SECRET_KEY")
 
 ALLOWED_HOSTS = []
 
-ADMINS = [("Shadaab Karim", "karimshadaab510@gmail.com"),]
+ADMINS = [
+    ("Shadaab Karim", "karimshadaab510@gmail.com"),
+]

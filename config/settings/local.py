@@ -2,7 +2,7 @@ from os import getenv, path
 
 from dotenv import load_dotenv
 
-from .base import * #noqa
+from .base import *  # noqa
 
 # load local environment variables
 local_env_file = path.join(BASE_DIR, ".envs", ".env.local")
@@ -14,13 +14,11 @@ DEBUG = True
 
 SITE_NAME = getenv("SITE_NAME")
 
-SECRET_KEY = getenv("DJANGO_SECRET_KEY", default="YtvVWfx2gIGfRreeHjH-0djybJLKyrLej2HZmcNkk8iYnY5aQQo")
+SECRET_KEY = getenv(
+    "DJANGO_SECRET_KEY", default="YtvVWfx2gIGfRreeHjH-0djybJLKyrLej2HZmcNkk8iYnY5aQQo"
+)
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "0.0.0.0"
-]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
 ADMIN_URL = getenv("DJANGO_ADMIN_URL")
 
@@ -48,8 +46,5 @@ LOGGING = {
             "formatter": "verbose",
         }
     },
-    "root": {
-        "level": "INFO",
-        "handlers": ["console"]
-    }
+    "root": {"level": "INFO", "handlers": ["console"]},
 }
