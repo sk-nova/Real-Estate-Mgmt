@@ -1,4 +1,3 @@
-
 services:
   api: &api
     build:
@@ -74,6 +73,26 @@ services:
       - estate_redis_prod_data:/data
     networks:
       - estate_prod_nw
+
+  celeryworker:
+    <<: *api
+    image: estate_prod_celeryworker
+    container_name: estate_prod_celeryworker
+    command: /start-celeryworker
+
+  celerybeat:
+    <<: *api
+    image: estate_prod_celerybeat
+    container_name: estate_prod_celerybeat
+    command: /start-celerybeat
+
+  flower:
+    <<: *api
+    image: estate_prod_flower
+    container_name: estate_prod_flower
+    command: /start-flower
+    ports:
+      - "5555:5555"
 
   nginx:
     build:
