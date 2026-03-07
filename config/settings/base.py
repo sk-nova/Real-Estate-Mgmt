@@ -1,10 +1,9 @@
+from datetime import timedelta
 from os import getenv, path
 from pathlib import Path
-from datetime import timedelta
-
-from dotenv import load_dotenv
 
 import cloudinary
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
@@ -153,8 +152,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Additional Settings
 
-CSRF_TRUSTED_ORIGINS = [
-]
+CSRF_TRUSTED_ORIGINS = []
 
 TAGGIT_CASE_INSENSITIVE = True
 
@@ -163,7 +161,7 @@ AUTH_USER_MODEL = "users.User"
 
 if USE_TZ:
     CELERY_TIMEZONE = TIME_ZONE
-    
+
 
 CELERY_BROKER_URL = getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = getenv("CELERY_RESULT_BACKEND")
@@ -185,27 +183,21 @@ CLOUDINARY_API_KEY = getenv("CLOUDINARY_API_KEY")
 CLOUDINARY_API_SECRET = getenv("CLOUDINARY_API_SECRET")
 
 cloudinary.config(
-    cloud_name = CLOUDINARY_CLOUD_NAME,
-    api_key = CLOUDINARY_API_KEY,
-    api_secret = CLOUDINARY_API_SECRET,
+    cloud_name=CLOUDINARY_CLOUD_NAME,
+    api_key=CLOUDINARY_API_KEY,
+    api_secret=CLOUDINARY_API_SECRET,
 )
 
-COOKIE_NAME="access"
-COOKIE_SAMESITE="Lax"
-COOKIE_PATH="/"
+COOKIE_NAME = "access"
+COOKIE_SAMESITE = "Lax"
+COOKIE_PATH = "/"
 COOKIE_HTTPONLY = True
 COOKIE_SECURE = getenv("COOKIE_SECURE", "True") == "True"
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION": (
-        "core_apps.common.cookie_auth.CookieAuthentication",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
-    ),
-    "DEFAULT_PAGNINATION_CLASS": (
-        "rest_framework.pagination.PageNumberPagination",
-    ),
+    "DEFAULT_AUTHENTICATION": ("core_apps.common.cookie_auth.CookieAuthentication",),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PAGNINATION_CLASS": ("rest_framework.pagination.PageNumberPagination",),
     "DEFAULT_FILTER_CLASSES": [
         "django_filters.rest_framework.DjangoFilterBackend",
     ],
@@ -241,9 +233,8 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "password-reset/{uid}/{token}",
     "SOCIAL_AUTH_ALLOWED_REDIRECT_URIS": getenv("REDIRECT_URIS", "").split(","),
     "SERIALIZERS": {
-        'user_create': 'core_apps.user.serializers.CreateUserSerializer',
-    }
-    
+        "user_create": "core_apps.user.serializers.CreateUserSerializer",
+    },
 }
 
 
@@ -255,6 +246,6 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPR = [
     "openid",
 ]
 SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = [
-    "first_name", 
+    "first_name",
     "last_name",
 ]
