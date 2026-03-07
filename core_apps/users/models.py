@@ -36,7 +36,7 @@ class User(AbstractUser):
 
     REQUIRED_FIELDS = ["username", "first_name", "last_name"]
 
-    objects = UserManager
+    objects = UserManager()
 
     class Meta:
         verbose_name = _("User")
