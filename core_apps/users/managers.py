@@ -34,9 +34,6 @@ class UserManager(DjangoUserManager):
             self.model._meta.app_label, self.model._meta.object_name
         )
 
-        print("Global User Model - ", global_user_model)
-        print(type(global_user_model))
-
         username: str = global_user_model.normalize_username(username)
 
         user = self.model(username=username, email=email, **extra_fields)
